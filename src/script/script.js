@@ -3,6 +3,12 @@ const nav = document.getElementById("nav");
 const header = document.querySelector("header");
 const navLinks = document.querySelectorAll("#nav a");
 
+function resetHeaderStyles() {
+  header.style.borderBottom = "2px solid var(--primary-color)";
+  header.style.background = "rgba(0,0,0,0.4)";
+  header.style.backdropFilter = "blur(10px)";
+}
+
 btnMobile.addEventListener("click", () => {
   nav.classList.toggle("active");
   btnMobile.classList.toggle("active");
@@ -12,9 +18,16 @@ btnMobile.addEventListener("click", () => {
     header.style.background = "transparent";
     header.style.backdropFilter = "none";
   } else {
-    header.style.borderBottom = "2px solid var(--primary-color)";
-    header.style.background = "rgba(0,0,0,0.4)";
-    header.style.backdropFilter = "blur(10px)";
+    resetHeaderStyles();
+  }
+});
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 768) {
+    resetHeaderStyles();
+    // fechar o menu se estava aberto
+    nav.classList.remove("active");
+    btnMobile.classList.remove("active");
   }
 });
 
