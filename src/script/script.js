@@ -37,7 +37,7 @@ navLinks.forEach(link => {
     if (nav.classList.contains("active") && window.innerWidth <= 768) {
       nav.classList.remove("active");
       btnMobile.classList.remove("active");
-      header.style.borderBottom = "2px solid var(--primary-color)"; // restaura a borda
+      resetHeaderStyles();
     }
   });
 });
