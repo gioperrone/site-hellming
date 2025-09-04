@@ -9,8 +9,12 @@ btnMobile.addEventListener("click", () => {
 
   if (nav.classList.contains("active")) {
     header.style.borderBottom = "none";
+    header.style.background = "transparent";
+    header.style.backdropFilter = "none";
   } else {
     header.style.borderBottom = "2px solid var(--primary-color)";
+    header.style.background = "rgba(0,0,0,0.4)";
+    header.style.backdropFilter = "blur(10px)";
   }
 });
 
@@ -47,4 +51,14 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
   e.preventDefault();
   alert('Message sent! (Demo only)');
   this.reset();
+});
+
+// reduzir e ampliar menu de navegação
+window.addEventListener("scroll", () => {
+  const header = document.querySelector("header");
+  if (window.scrollY > 50) { 
+    header.classList.add("shrink");
+  } else {
+    header.classList.remove("shrink");
+  }
 });
