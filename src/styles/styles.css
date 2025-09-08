@@ -131,6 +131,48 @@ nav a:hover {
   margin: 0 20px 0 20px;
 }
 
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: clamp(75%, 50%, 50%) center;
+  filter: grayscale(100%); /* preto e branco */
+  z-index: -1; /* envia o vídeo para trás do conteúdo do hero */
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1; /* garante que o conteúdo fique acima do vídeo */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Overlay com retícula CSS */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* não bloqueia clique */
+  z-index: 0;
+
+  /* Gradiente preto semitransparente + retícula */
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), /* escurecimento */
+    linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),  /* linhas horizontais brancas */
+    linear-gradient(90deg, rgba(255,0,0,0.1) 1px, transparent 1px); /* linhas verticais vermelhas */
+
+  background-size:
+    auto,   /* gradiente preto cobre tudo */
+    3px 3px, /* linhas horizontais */
+    3px 3px; /* linhas verticais */
+}
+
 /* Sections */
 .section {
   padding: 100px 20px;
