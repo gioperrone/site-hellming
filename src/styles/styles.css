@@ -291,20 +291,21 @@ footer {
 
 @media (max-height: 560px) {
   .hero-content {
-    margin-top: 40px; /* empurra todo o conteúdo para baixo */
+    margin-top: 40px;
   }
 
   .hero-logo {
-    margin-bottom: 10px; /* mantém um espaçamento menor */
+    margin-bottom: 10px;
   }
 }
 
 @media (max-height: 470px) {
   .hero-logo {
-    max-width: 300px; /* logo menor */
+    max-width: 270px;
+    margin-bottom: 5px;
   }
 
   .hero p {
-    font-size: 0.8rem; /* texto menor */
+    font-size: 0.7rem;
   }
 }
