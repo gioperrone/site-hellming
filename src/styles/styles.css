@@ -302,12 +302,6 @@ footer {
   }
 }
 
-@media (max-height: 660px) {
-  nav {
-    height: 80vh;
-  }
-}
-
 @media (max-height: 560px) {
   .hero-content {
     margin-top: 40px;
@@ -319,10 +313,6 @@ footer {
 }
 
 @media (max-height: 470px) {
-  nav {
-    height: 95vh;
-  }
-
   .hero-logo {
     max-width: 270px;
     margin-bottom: 5px;
