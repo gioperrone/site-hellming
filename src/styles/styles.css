@@ -186,6 +186,10 @@ nav a:hover {
   margin: auto;
 }
 
+.section:last-of-type {
+  padding-bottom: 200px;
+}
+
 .section-content {
   max-width: 900px;
   margin: auto; /* centraliza conteúdo */
