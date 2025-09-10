@@ -172,8 +172,8 @@ nav a:hover {
 
   background-size:
     auto,   /* gradiente preto cobre tudo */
-    3px 3px, /* linhas horizontais */
-    3px 3px; /* linhas verticais */
+    4px 4px, /* linhas horizontais */
+    4px 4px; /* linhas verticais */
 }
 
 /* Sections */
