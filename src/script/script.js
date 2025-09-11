@@ -4,12 +4,26 @@ const header = document.querySelector("header");
 const navLinks = document.querySelectorAll("#nav a");
 
 const carousel = document.querySelector('.store-carousel');
+const fadeText = document.querySelector('.store-fade-text');
+const arrow = fadeText.querySelector('.material-symbols-outlined');
+
 let isDragging = false;
-let startX;
-let scrollLeft;
+let startX = 0;
+let scrollLeft = 0;
 
+// === Seta animada ===
+let arrowPos = 0;
+let arrowDirection = 1;
+function animateArrow() {
+  if (fadeText.style.opacity === '0') return; // parar animação se sumiu
+  arrowPos += 0.2 * arrowDirection;
+  if (arrowPos > 5 || arrowPos < 0) arrowDirection *= -1;
+  arrow.style.transform = `translateX(${arrowPos}px)`;
+  requestAnimationFrame(animateArrow);
+}
+animateArrow();
 
-
+// === Funções menu mobile ===
 function resetHeaderStyles() {
   header.style.borderBottom = "2px solid var(--primary-color)";
   header.style.background = "rgba(0,0,0,0.4)";
@@ -32,7 +46,6 @@ btnMobile.addEventListener("click", () => {
 window.addEventListener("resize", () => {
   if (window.innerWidth > 768) {
     resetHeaderStyles();
-    // fechar o menu se estava aberto
     nav.classList.remove("active");
     btnMobile.classList.remove("active");
   }
@@ -40,7 +53,6 @@ window.addEventListener("resize", () => {
 
 navLinks.forEach(link => {
   link.addEventListener("click", () => {
-    // Fecha o menu somente se estiver aberto (mobile)
     if (nav.classList.contains("active") && window.innerWidth <= 768) {
       nav.classList.remove("active");
       btnMobile.classList.remove("active");
@@ -49,7 +61,7 @@ navLinks.forEach(link => {
   });
 });
 
-// Smooth Scroll
+// Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
     const targetId = this.getAttribute('href');
@@ -73,47 +85,46 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
   this.reset();
 });
 
-// reduzir e ampliar menu de navegação
+// Reduzir/ampliar header ao scroll
 window.addEventListener("scroll", () => {
-  const header = document.querySelector("header");
-  if (window.scrollY > 50) { 
+  if (window.scrollY > 50) {
     header.classList.add("shrink");
   } else {
     header.classList.remove("shrink");
   }
 });
 
-// Carrossel Store - Drag & Scroll
-carousel.addEventListener('mousedown', (e) => {
+// === Carrossel Store - Drag & Scroll ===
+function startDrag(e) {
   isDragging = true;
   carousel.classList.add('dragging');
-  startX = e.pageX - carousel.offsetLeft;
+  startX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
   scrollLeft = carousel.scrollLeft;
-});
 
-carousel.addEventListener('mouseleave', () => {
-  isDragging = false;
-  carousel.classList.remove('dragging');
-});
+  // fade desaparece no primeiro drag
+  fadeText.style.opacity = '0';
 
-carousel.addEventListener('mouseup', () => {
-  isDragging = false;
-  carousel.classList.remove('dragging');
-});
-
-carousel.addEventListener('mousemove', (e) => {
-  if (!isDragging) return;
   e.preventDefault();
-  const x = e.pageX - carousel.offsetLeft;
+}
+
+function stopDrag() {
+  isDragging = false;
+  carousel.classList.remove('dragging');
+}
+
+function doDrag(e) {
+  if (!isDragging) return;
+  const x = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
   const walk = (x - startX) * 0.7;
   carousel.scrollLeft = scrollLeft - walk;
-});
+}
 
-carousel.addEventListener('mousedown', (e) => {
-  isDragging = true;
-  carousel.classList.add('dragging');
-  startX = e.pageX - carousel.offsetLeft;
-  scrollLeft = carousel.scrollLeft;
+carousel.addEventListener('mousedown', startDrag);
+carousel.addEventListener('touchstart', startDrag);
 
-  e.preventDefault(); // previne seleção inicial
-});
+carousel.addEventListener('mouseup', stopDrag);
+carousel.addEventListener('mouseleave', stopDrag);
+carousel.addEventListener('touchend', stopDrag);
+
+carousel.addEventListener('mousemove', doDrag);
+carousel.addEventListener('touchmove', doDrag);

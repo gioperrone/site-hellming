@@ -249,11 +249,39 @@ nav a:hover {
   position: relative;
 }
 
+/* Fade direita sobre o carrossel */
+.store-wrapper {
+  position: relative;
+}
+
+.store-fade-text {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #eee;
+  font-weight: 500;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  z-index: 15; /* acima do fade */
+  padding-right: 20px;
+  font-size: 0.9rem;
+  text-shadow: 2px 5px 5px rgba(0,0,0,0.7);
+  padding: 10px;
+}
+
+.store-fade-text .material-symbols-outlined {
+  font-size: 20px;
+}
+
 .fade-right {
   position: absolute;
   top: 0;
   right: 0;
-  width: 120px; /* largura do fade */
+  width: 80px; /* largura do fade */
   height: 100%;
   pointer-events: none; /* não bloqueia clique */
   background: linear-gradient(to left, #111 0%, rgba(17,17,17,0) 100%);
