@@ -3,6 +3,13 @@ const nav = document.getElementById("nav");
 const header = document.querySelector("header");
 const navLinks = document.querySelectorAll("#nav a");
 
+const carousel = document.querySelector('.store-carousel');
+let isDragging = false;
+let startX;
+let scrollLeft;
+
+
+
 function resetHeaderStyles() {
   header.style.borderBottom = "2px solid var(--primary-color)";
   header.style.background = "rgba(0,0,0,0.4)";
@@ -74,4 +81,39 @@ window.addEventListener("scroll", () => {
   } else {
     header.classList.remove("shrink");
   }
+});
+
+// Carrossel Store - Drag & Scroll
+carousel.addEventListener('mousedown', (e) => {
+  isDragging = true;
+  carousel.classList.add('dragging');
+  startX = e.pageX - carousel.offsetLeft;
+  scrollLeft = carousel.scrollLeft;
+});
+
+carousel.addEventListener('mouseleave', () => {
+  isDragging = false;
+  carousel.classList.remove('dragging');
+});
+
+carousel.addEventListener('mouseup', () => {
+  isDragging = false;
+  carousel.classList.remove('dragging');
+});
+
+carousel.addEventListener('mousemove', (e) => {
+  if (!isDragging) return;
+  e.preventDefault();
+  const x = e.pageX - carousel.offsetLeft;
+  const walk = (x - startX) * 0.7;
+  carousel.scrollLeft = scrollLeft - walk;
+});
+
+carousel.addEventListener('mousedown', (e) => {
+  isDragging = true;
+  carousel.classList.add('dragging');
+  startX = e.pageX - carousel.offsetLeft;
+  scrollLeft = carousel.scrollLeft;
+
+  e.preventDefault(); // previne seleção inicial
 });
