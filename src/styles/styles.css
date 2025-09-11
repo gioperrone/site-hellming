@@ -265,6 +265,16 @@ nav a:hover {
   transform: scale(1.07); /* zoom da imagem */
 }
 
+/* EPK */
+.epk-icon {
+  text-align: center;
+}
+
+.epk-icon .material-symbols-outlined {
+  font-size: 60px;
+  color: var(--secondary-color);
+}
+
 /* Buttons */
 .btn {
   display: inline-block;
