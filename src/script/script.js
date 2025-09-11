@@ -134,6 +134,17 @@ carousel.addEventListener('touchmove', doDrag);
 window.addEventListener("load", () => {
   const preloader = document.getElementById("preloader");
   if (preloader) {
-    preloader.classList.add("hidden");
+    const minTime = 2000; // tempo mínimo em ms (2s)
+    const start = performance.now();
+
+    const end = () => {
+      const elapsed = performance.now() - start;
+      const delay = Math.max(0, minTime - elapsed);
+      setTimeout(() => {
+        preloader.classList.add("hidden");
+      }, delay);
+    };
+
+    end();
   }
 });
