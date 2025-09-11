@@ -207,6 +207,10 @@ nav a:hover {
 }
 
 /* Store Section */
+#store {
+  background: #111;
+}
+
 .store-carousel {
   display: flex;
   gap: 15px;
@@ -230,11 +234,15 @@ nav a:hover {
 .store-card {
   flex: 0 0 auto;
   width: 220px;
-  background: #111;
+  background: #222;
   padding: 15px;
   border-radius: 8px;
   text-align: center;
   scroll-snap-align: start;
+}
+
+.store-card p {
+  font-size: 0.8rem;
 }
 
 .image-mask {
