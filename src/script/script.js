@@ -115,7 +115,7 @@ function stopDrag() {
 function doDrag(e) {
   if (!isDragging) return;
   const x = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
-  const walk = (x - startX) * 0.7;
+  const walk = (x - startX) * 1;
   carousel.scrollLeft = scrollLeft - walk;
 }
 
