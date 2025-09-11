@@ -128,3 +128,12 @@ carousel.addEventListener('touchend', stopDrag);
 
 carousel.addEventListener('mousemove', doDrag);
 carousel.addEventListener('touchmove', doDrag);
+
+
+// === Preloader ===
+window.addEventListener("load", () => {
+  const preloader = document.getElementById("preloader");
+  if (preloader) {
+    preloader.classList.add("hidden");
+  }
+});
