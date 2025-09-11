@@ -368,12 +368,45 @@ form button:hover {
 
 /* Footer */
 footer {
-  position: relative;
-  text-align: center;
-  padding: 20px;
   background: #111;
   color: #777;
+  text-align: center;
+  padding: 20px 0;
+  position: relative;
   z-index: 2000;
+}
+
+.footer-social {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.footer-symbol {
+  width: 60px;
+  height: 60px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 25px;
+}
+
+.social-icons a img {
+  width: 25px;
+  height: 25px;
+  transition: filter 0.3s ease;
+}
+
+.social-icons a img:hover {
+  filter: grayscale(100%) brightness(80%);
+}
+
+footer p {
+  margin: 0;
+  font-size: 0.9rem;
 }
 
 /* === Preloader === */
