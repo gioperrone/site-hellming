@@ -275,6 +275,16 @@ nav a:hover {
 
 .store-fade-text .material-symbols-outlined {
   font-size: 20px;
+  animation: arrowMove 1.6s ease-in-out infinite;
+}
+
+@keyframes arrowMove {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(6px); /* desliza um pouco pra direita */
+  }
 }
 
 .fade-right {
