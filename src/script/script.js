@@ -3,26 +3,6 @@ const nav = document.getElementById("nav");
 const header = document.querySelector("header");
 const navLinks = document.querySelectorAll("#nav a");
 
-const carousel = document.querySelector('.store-carousel');
-const fadeText = document.querySelector('.store-fade-text');
-const arrow = fadeText.querySelector('.material-symbols-outlined');
-
-let isDragging = false;
-let startX = 0;
-let scrollLeft = 0;
-
-// === Seta animada ===
-let arrowPos = 0;
-let arrowDirection = 1;
-function animateArrow() {
-  if (fadeText.style.opacity === '0') return; // parar animação se sumiu
-  arrowPos += 0.2 * arrowDirection;
-  if (arrowPos > 5 || arrowPos < 0) arrowDirection *= -1;
-  arrow.style.transform = `translateX(${arrowPos}px)`;
-  requestAnimationFrame(animateArrow);
-}
-animateArrow();
-
 // === Funções menu mobile ===
 function resetHeaderStyles() {
   header.style.borderBottom = "2px solid var(--primary-color)";
@@ -94,42 +74,6 @@ window.addEventListener("scroll", () => {
   }
 });
 
-// === Carrossel Store - Drag & Scroll ===
-function startDrag(e) {
-  isDragging = true;
-  carousel.classList.add('dragging');
-  startX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
-  scrollLeft = carousel.scrollLeft;
-
-  // fade desaparece no primeiro drag
-  fadeText.style.opacity = '0';
-
-  e.preventDefault();
-}
-
-function stopDrag() {
-  isDragging = false;
-  carousel.classList.remove('dragging');
-}
-
-function doDrag(e) {
-  if (!isDragging) return;
-  const x = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
-  const walk = (x - startX) * 1;
-  carousel.scrollLeft = scrollLeft - walk;
-}
-
-carousel.addEventListener('mousedown', startDrag);
-carousel.addEventListener('touchstart', startDrag);
-
-carousel.addEventListener('mouseup', stopDrag);
-carousel.addEventListener('mouseleave', stopDrag);
-carousel.addEventListener('touchend', stopDrag);
-
-carousel.addEventListener('mousemove', doDrag);
-carousel.addEventListener('touchmove', doDrag);
-
-
 // === Preloader ===
 window.addEventListener("load", () => {
   const preloader = document.getElementById("preloader");
@@ -148,3 +92,17 @@ window.addEventListener("load", () => {
     end();
   }
 });
+
+// === Ocultar "Drag →" ao rolar o carrossel ===
+const carousel = document.querySelector('.store-carousel');
+const fadeText = document.querySelector('.store-fade-text');
+
+if (carousel && fadeText) {
+  carousel.addEventListener('scroll', () => {
+    if (carousel.scrollLeft > 0) {
+      fadeText.style.opacity = '0';   // desaparece ao rolar
+      // remove o listener pra não ficar rodando à toa
+      carousel.removeEventListener('scroll', arguments.callee);
+    }
+  });
+}
