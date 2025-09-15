@@ -2,6 +2,11 @@ const btnMobile = document.getElementById("btn-mobile");
 const nav = document.getElementById("nav");
 const header = document.querySelector("header");
 const navLinks = document.querySelectorAll("#nav a");
+const carousel = document.querySelector('.store-carousel');
+const fadeText = document.querySelector('.store-fade-text');
+let isDown = false;
+let startX;
+let scrollLeft;
 
 // === Funções menu mobile ===
 function resetHeaderStyles() {
@@ -94,9 +99,6 @@ window.addEventListener("load", () => {
 });
 
 // === Ocultar "Drag →" ao rolar o carrossel ===
-const carousel = document.querySelector('.store-carousel');
-const fadeText = document.querySelector('.store-fade-text');
-
 if (carousel && fadeText) {
   carousel.addEventListener('scroll', () => {
     if (carousel.scrollLeft > 0) {
@@ -106,3 +108,39 @@ if (carousel && fadeText) {
     }
   });
 }
+
+// --- Drag no desktop ---
+if (carousel) {
+  carousel.addEventListener('mousedown', (e) => {
+    isDown = true;
+    carousel.classList.add('dragging'); // troca o cursor
+    startX = e.pageX - carousel.offsetLeft;
+    scrollLeft = carousel.scrollLeft;
+    // desliga scroll suave só durante drag
+    carousel.style.scrollBehavior = 'auto';
+  });
+
+  carousel.addEventListener('mouseleave', () => {
+    isDown = false;
+    carousel.classList.remove('dragging');
+    carousel.style.scrollBehavior = ''; // volta pro CSS (smooth)
+  });
+
+  carousel.addEventListener('mouseup', () => {
+    isDown = false;
+    carousel.classList.remove('dragging');
+    carousel.style.scrollBehavior = ''; // volta pro CSS
+  });
+
+  carousel.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault(); // evita selecionar texto/imagem
+    const x = e.pageX - carousel.offsetLeft;
+    const walk = (x - startX); // quanto arrastou
+    carousel.scrollLeft = scrollLeft - walk;
+  });
+}
+
+document.querySelectorAll('.store-card img').forEach(img => {
+  img.addEventListener('dragstart', (e) => e.preventDefault());
+});
