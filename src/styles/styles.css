@@ -368,8 +368,7 @@ nav a:hover {
 }
 
 .watch-now-content h2 {
-  font-size: 1.8rem;
-  margin-bottom: 20px;
+  font-size: 1.5rem;
   color: #fff;
 }
 
@@ -567,11 +566,11 @@ footer p {
   }
 
   .watch-now {
-    height: 30vh; /* menor no mobile */
+    height: 25vh; /* menor no mobile */
   }
 
   .watch-now-content h2 {
-    font-size: 1.2rem; /* título menor no mobile */
+    font-size: 1rem; /* título menor no mobile */
   }
 }
 
