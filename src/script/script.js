@@ -99,11 +99,12 @@ window.addEventListener("load", () => {
   }
 });
 
-// === Ocultar "Drag →" ao rolar o carrossel ===
-if (carousel && fadeText) {
+// === Ocultar "Drag →" e fade-right ao rolar o carrossel ===
+if (carousel && fadeText && fadeRight) {
   carousel.addEventListener('scroll', () => {
     if (carousel.scrollLeft > 0) {
-      fadeText.style.opacity = '0';   // desaparece ao rolar
+      fadeText.style.opacity = '0';    // desaparece o texto
+      fadeRight.style.opacity = '0';   // desaparece o fade
       // remove o listener pra não ficar rodando à toa
       carousel.removeEventListener('scroll', arguments.callee);
     }
@@ -112,68 +113,33 @@ if (carousel && fadeText) {
 
 // --- Drag no desktop ---
 if (carousel) {
-  // MOUSE: início do drag
   carousel.addEventListener('mousedown', (e) => {
     isDown = true;
-    carousel.classList.add('dragging');
+    carousel.classList.add('dragging'); // troca o cursor
     startX = e.pageX - carousel.offsetLeft;
     scrollLeft = carousel.scrollLeft;
+    // desliga scroll suave só durante drag
     carousel.style.scrollBehavior = 'auto';
-
-    // remove o gradiente/fade de vez
-    if (fadeRight) {
-      fadeRight.style.opacity = '0';
-    }
   });
 
-  // MOUSE: solta ou sai do carrossel
   carousel.addEventListener('mouseleave', () => {
     isDown = false;
     carousel.classList.remove('dragging');
-    carousel.style.scrollBehavior = '';
+    carousel.style.scrollBehavior = ''; // volta pro CSS (smooth)
   });
 
   carousel.addEventListener('mouseup', () => {
     isDown = false;
     carousel.classList.remove('dragging');
-    carousel.style.scrollBehavior = '';
+    carousel.style.scrollBehavior = ''; // volta pro CSS
   });
 
-  // MOUSE: movimento do cursor enquanto arrasta
   carousel.addEventListener('mousemove', (e) => {
     if (!isDown) return;
-    e.preventDefault(); // evita seleção indesejada
+    e.preventDefault(); // evita selecionar texto/imagem
     const x = e.pageX - carousel.offsetLeft;
-    const walk = (x - startX);
+    const walk = (x - startX); // quanto arrastou
     carousel.scrollLeft = scrollLeft - walk;
-  });
-
-  // TOUCH: suporte mobile
-  carousel.addEventListener('touchstart', (e) => {
-    const touch = e.touches[0];
-    isDown = true;
-    carousel.classList.add('dragging');
-    startX = touch.pageX - carousel.offsetLeft;
-    scrollLeft = carousel.scrollLeft;
-    carousel.style.scrollBehavior = 'auto';
-
-    if (fadeRight) {
-      fadeRight.style.background = 'none';
-    }
-  }, { passive: true });
-
-  carousel.addEventListener('touchmove', (e) => {
-    if (!isDown) return;
-    const touch = e.touches[0];
-    const x = touch.pageX - carousel.offsetLeft;
-    const walk = (x - startX);
-    carousel.scrollLeft = scrollLeft - walk;
-  }, { passive: true });
-
-  carousel.addEventListener('touchend', () => {
-    isDown = false;
-    carousel.classList.remove('dragging');
-    carousel.style.scrollBehavior = '';
   });
 }
 
