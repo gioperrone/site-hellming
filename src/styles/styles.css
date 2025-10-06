@@ -322,7 +322,7 @@ nav a:hover {
 
 /* === Latest Album === */
 #latest-album {
-  background: #0a0a0a; /* mesmo fundo da biography */
+  background: #0a0a0a;
   color: #eee;
   padding: 80px 0;
 }
@@ -339,12 +339,12 @@ nav a:hover {
   justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
-  gap: 40px;
-  margin-top: 40px;
+  gap: 10px;
+  margin-top: 20px;
 }
 
 .album-cover img {
-  width: 300px;
+  width: 340px;
   height: auto;
 }
 
@@ -352,20 +352,27 @@ nav a:hover {
   text-align: left;
 }
 
+.album-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #fff;
+  text-align: center;
+}
+
 .album-tracks ol {
   list-style: decimal;
-  margin-left: 20px;
+  margin-left: 50px;
   color: #eee;
 }
 
 .album-tracks li {
-  font-size: 0.95rem;
   margin-bottom: 6px;
+  font-size: 0.95rem;
 }
 
-/* Botão centralizado na página */
 .listen-btn-wrapper {
-  margin-top: 50px;
+  margin-top: 20px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -618,7 +625,7 @@ footer p {
     font-size: 0.85rem;
   }
 
-    .album-wrapper {
+  .album-wrapper {
     flex-direction: column;
     align-items: center;
   }
