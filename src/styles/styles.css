@@ -22,6 +22,39 @@ body {
   scroll-behavior: smooth;
 }
 
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.reveal-left.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.reveal-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 /* Header */
 header {
   transition: padding 0.3s ease;
@@ -339,7 +372,7 @@ nav a:hover {
   justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 5px;
   margin-top: 20px;
 }
 
@@ -362,7 +395,7 @@ nav a:hover {
 
 .album-tracks ol {
   list-style: decimal;
-  margin-left: 50px;
+  margin-left: 60px;
   color: #eee;
 }
 

@@ -1,3 +1,4 @@
+const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
 const btnMobile = document.getElementById("btn-mobile");
 const nav = document.getElementById("nav");
 const header = document.querySelector("header");
@@ -11,6 +12,23 @@ const closeModal = document.querySelector('.close-modal');
 let isDown = false;
 let startX;
 let scrollLeft;
+
+
+
+// Scroll Reveal
+const revealObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      entry.target.classList.add('active');
+      observer.unobserve(entry.target); // anima só uma vez
+    }
+  });
+}, {
+  threshold: 0.2
+});
+
+reveals.forEach(el => revealObserver.observe(el));
+
 
 // === Funções menu mobile ===
 function resetHeaderStyles() {
