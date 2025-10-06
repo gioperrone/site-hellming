@@ -14,22 +14,6 @@ let startX;
 let scrollLeft;
 
 
-
-// Scroll Reveal
-const revealObserver = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting) {
-      entry.target.classList.add('active');
-      observer.unobserve(entry.target); // anima só uma vez
-    }
-  });
-}, {
-  threshold: 0.2
-});
-
-reveals.forEach(el => revealObserver.observe(el));
-
-
 // === Funções menu mobile ===
 function resetHeaderStyles() {
   header.style.borderBottom = "2px solid var(--primary-color)";
@@ -167,6 +151,20 @@ if (carousel) {
 document.querySelectorAll('.store-card img').forEach(img => {
   img.addEventListener('dragstart', (e) => e.preventDefault());
 });
+
+// Scroll Reveal
+const revealObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      entry.target.classList.add('active');
+      observer.unobserve(entry.target); // anima só uma vez
+    }
+  });
+}, {
+  threshold: 0.2
+});
+
+reveals.forEach(el => revealObserver.observe(el));
 
 // Modal Latest Album
 if (listenBtn && albumModal && closeModal) {

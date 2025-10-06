@@ -714,14 +714,6 @@ footer p {
 
 /* Mobile adjustments */
 @media (max-width: 768px) {
-  nav {
-    position: fixed;
-    top: env(safe-area-inset-top);
-    left: 0;
-    width: 100%;
-    z-index: 2000;
-  }
-
   .hamburger {
     display: flex;
   }
