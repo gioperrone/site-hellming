@@ -378,6 +378,92 @@ nav a:hover {
   justify-content: center;
 }
 
+/* Modal */
+.modal {
+  display: none; /* oculto por padrão */
+  position: fixed;
+  z-index: 5000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background: #111;
+  margin: 10% auto;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  color: #eee;
+  position: relative;
+}
+
+.modal-album-cover {
+  margin-bottom: 20px;
+}
+
+.modal-album-cover img {
+  width: 150px; /* tamanho da capa */
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto; /* centraliza */
+}
+
+.modal-content h3 {
+  margin-bottom: 25px;
+  color: var(--primary-color);
+}
+
+.modal-content .platforms {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal-content .platforms a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px;
+  background: #222;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #eee;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+.modal-content .platforms a:hover {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+.modal-content .platforms img {
+  width: 30px;
+  height: 30px;
+}
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #eee;
+  cursor: pointer;
+}
+
+.close-modal:hover {
+  color: var(--primary-color);
+}
+
 /* Watch Now */
 .watch-now {
   position: relative;

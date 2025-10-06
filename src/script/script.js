@@ -5,6 +5,9 @@ const navLinks = document.querySelectorAll("#nav a");
 const carousel = document.querySelector('.store-carousel');
 const fadeText = document.querySelector('.store-fade-text');
 const fadeRight = document.querySelector('.fade-right');
+const listenBtn = document.querySelector('.listen-btn-wrapper .btn');
+const albumModal = document.getElementById('album-modal');
+const closeModal = document.querySelector('.close-modal');
 let isDown = false;
 let startX;
 let scrollLeft;
@@ -146,3 +149,20 @@ if (carousel) {
 document.querySelectorAll('.store-card img').forEach(img => {
   img.addEventListener('dragstart', (e) => e.preventDefault());
 });
+
+// Modal Latest Album
+if (listenBtn && albumModal && closeModal) {
+  listenBtn.addEventListener('click', () => {
+    albumModal.style.display = 'block';
+  });
+
+  closeModal.addEventListener('click', () => {
+    albumModal.style.display = 'none';
+  });
+
+  window.addEventListener('click', (e) => {
+    if (e.target === albumModal) {
+      albumModal.style.display = 'none';
+    }
+  });
+}
