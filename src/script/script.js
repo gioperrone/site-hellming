@@ -1,4 +1,4 @@
-const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+// const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
 const btnMobile = document.getElementById("btn-mobile");
 const nav = document.getElementById("nav");
 const header = document.querySelector("header");
@@ -164,24 +164,24 @@ const revealObserver = new IntersectionObserver((entries, observer) => {
   threshold: 0.2
 });
 
-reveals.forEach(el => revealObserver.observe(el));
+// reveals.forEach(el => revealObserver.observe(el));
 
-// Modal Latest Album
-if (listenBtn && albumModal && closeModal) {
-  listenBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    albumModal.classList.add('show');
-  });
+// // Modal Latest Album
+// if (listenBtn && albumModal && closeModal) {
+//   listenBtn.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     albumModal.classList.add('show');
+//   });
 
-  const closeAlbumModal = () => {
-    albumModal.classList.remove('show');
-  }
+//   const closeAlbumModal = () => {
+//     albumModal.classList.remove('show');
+//   }
 
-  closeModal.addEventListener('click', closeAlbumModal);
+//   closeModal.addEventListener('click', closeAlbumModal);
 
-  window.addEventListener('click', (e) => {
-    if (e.target === albumModal) {
-      closeAlbumModal();
-    }
-  });
-}
+//   window.addEventListener('click', (e) => {
+//     if (e.target === albumModal) {
+//       closeAlbumModal();
+//     }
+//   });
+// }
