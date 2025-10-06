@@ -320,6 +320,57 @@ nav a:hover {
   transform: scale(1.05); /* zoom da imagem */
 }
 
+/* === Latest Album === */
+#latest-album {
+  background: #0a0a0a; /* mesmo fundo da biography */
+  color: #eee;
+  padding: 80px 0;
+}
+
+.latest-album-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.album-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.album-cover img {
+  width: 300px;
+  height: auto;
+}
+
+.album-tracks {
+  text-align: left;
+}
+
+.album-tracks ol {
+  list-style: decimal;
+  margin-left: 20px;
+  color: #eee;
+}
+
+.album-tracks li {
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+
+/* Botão centralizado na página */
+.listen-btn-wrapper {
+  margin-top: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 /* Watch Now */
 .watch-now {
   position: relative;
@@ -565,6 +616,21 @@ footer p {
 
   .hero p {
     font-size: 0.85rem;
+  }
+
+    .album-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .album-tracks {
+    text-align: center;
+  }
+
+  .album-tracks ol {
+    margin-left: 0;
+    padding-left: 0;
+    list-style-position: inside;
   }
 
   .watch-now {
