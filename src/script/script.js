@@ -8,7 +8,6 @@ const fadeRight = document.querySelector('.fade-right');
 const listenBtn = document.querySelector('.listen-btn-wrapper .btn');
 const albumModal = document.getElementById('album-modal');
 const closeModal = document.querySelector('.close-modal');
-const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
 let isDown = false;
 let startX;
 let scrollLeft;
@@ -171,17 +170,3 @@ if (listenBtn && albumModal && closeModal) {
     }
   });
 }
-
-// Scroll Reveal
-const revealObserver = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting) {
-      entry.target.classList.add('active');
-      observer.unobserve(entry.target); // anima só uma vez
-    }
-  });
-}, {
-  threshold: 0.1
-});
-
-reveals.forEach(el => revealObserver.observe(el));
