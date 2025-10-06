@@ -380,7 +380,10 @@ nav a:hover {
 
 /* Modal */
 .modal {
-  display: none; /* oculto por padrão */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  display: block;
   position: fixed;
   z-index: 5000;
   left: 0;
@@ -390,6 +393,11 @@ nav a:hover {
   overflow: auto;
   background: rgba(0,0,0,0.85);
   backdrop-filter: blur(5px);
+}
+
+.modal.show {
+  opacity: 1;
+  visibility: visible;
 }
 
 .modal-content {
@@ -455,9 +463,9 @@ nav a:hover {
   top: 15px;
   right: 20px;
   font-size: 28px;
-  font-weight: bold;
-  color: #eee;
   cursor: pointer;
+  color: #eee;
+  transition: color 0.3s;
 }
 
 .close-modal:hover {
@@ -556,7 +564,7 @@ nav a:hover {
   background: var(--secondary-color);
 }
 
-/* Contact Form */
+/* Contact */
 form {
   display: flex;
   flex-direction: column;
@@ -568,6 +576,11 @@ form input, form textarea {
   background: #111;
   border: 1px solid #444;
   color: #eee;
+}
+
+form textarea {
+  min-height: 150px;
+  resize: vertical
 }
 
 form input::placeholder,

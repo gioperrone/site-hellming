@@ -152,17 +152,20 @@ document.querySelectorAll('.store-card img').forEach(img => {
 
 // Modal Latest Album
 if (listenBtn && albumModal && closeModal) {
-  listenBtn.addEventListener('click', () => {
-    albumModal.style.display = 'block';
+  listenBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    albumModal.classList.add('show');
   });
 
-  closeModal.addEventListener('click', () => {
-    albumModal.style.display = 'none';
-  });
+  const closeAlbumModal = () => {
+    albumModal.classList.remove('show');
+  }
+
+  closeModal.addEventListener('click', closeAlbumModal);
 
   window.addEventListener('click', (e) => {
     if (e.target === albumModal) {
-      albumModal.style.display = 'none';
+      closeAlbumModal();
     }
   });
 }
