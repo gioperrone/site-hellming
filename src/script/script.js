@@ -1,4 +1,3 @@
-const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
 const btnMobile = document.getElementById("btn-mobile");
 const nav = document.getElementById("nav");
 const header = document.querySelector("header");
@@ -9,6 +8,7 @@ const fadeRight = document.querySelector('.fade-right');
 const listenBtn = document.querySelector('.listen-btn-wrapper .btn');
 const albumModal = document.getElementById('album-modal');
 const closeModal = document.querySelector('.close-modal');
+const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
 let isDown = false;
 let startX;
 let scrollLeft;
@@ -152,20 +152,6 @@ document.querySelectorAll('.store-card img').forEach(img => {
   img.addEventListener('dragstart', (e) => e.preventDefault());
 });
 
-// Scroll Reveal
-const revealObserver = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting) {
-      entry.target.classList.add('active');
-      observer.unobserve(entry.target); // anima só uma vez
-    }
-  });
-}, {
-  threshold: 0.1
-});
-
-reveals.forEach(el => revealObserver.observe(el));
-
 // Modal Latest Album
 if (listenBtn && albumModal && closeModal) {
   listenBtn.addEventListener('click', (e) => {
@@ -185,3 +171,17 @@ if (listenBtn && albumModal && closeModal) {
     }
   });
 }
+
+// Scroll Reveal
+const revealObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      entry.target.classList.add('active');
+      observer.unobserve(entry.target); // anima só uma vez
+    }
+  });
+}, {
+  threshold: 0.1
+});
+
+reveals.forEach(el => revealObserver.observe(el));
