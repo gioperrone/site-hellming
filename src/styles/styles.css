@@ -156,7 +156,7 @@ nav a:hover {
 
 /* Overlay com retícula CSS */
 .overlay {
-  position: fiex;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
