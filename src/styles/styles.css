@@ -141,7 +141,7 @@ nav a:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: clamp(75%, 50%, 50%) center;
+  object-position: center;
   filter: grayscale(100%); /* preto e branco */
   z-index: -1; /* envia o vídeo para trás do conteúdo do hero */
 }
