@@ -128,10 +128,85 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 
 
-// === Formulário de contato ===
+// === Contact Form ===
 
-// O envio é feito diretamente pelo Formspree através do action do formulário.
-// Não usar e.preventDefault() aqui, pois isso impediria o envio.
+const contactForm = document.getElementById('contact-form');
+
+if (contactForm) {
+
+  contactForm.addEventListener('submit', async function(e) {
+
+    e.preventDefault();
+
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+
+    const originalButtonText = submitButton.textContent;
+
+    const formData = new FormData(contactForm);
+
+    submitButton.disabled = true;
+
+    submitButton.textContent = 'Sending...';
+
+    try {
+
+      const response = await fetch(contactForm.action, {
+
+        method: 'POST',
+
+        body: formData,
+
+        headers: {
+
+          'Accept': 'application/json'
+
+        }
+
+      });
+
+      if (response.ok) {
+
+        contactForm.reset();
+
+        submitButton.disabled = false;
+
+        submitButton.textContent = originalButtonText;
+
+        const successMessage = document.createElement('div');
+
+        successMessage.className = 'form-success';
+
+        successMessage.innerHTML = `
+
+          <h3>Message sent successfully!</h3>
+
+          <p>Thanks for getting in touch. We'll get back to you soon.</p>
+
+        `;
+
+        contactForm.style.display = 'none';
+
+        contactForm.parentNode.insertBefore(successMessage, contactForm.nextSibling);
+
+      } else {
+
+        throw new Error('Form submission failed');
+
+      }
+
+    } catch (error) {
+
+      submitButton.disabled = false;
+
+      submitButton.textContent = originalButtonText;
+
+      alert('Something went wrong. Please try again.');
+
+    }
+
+  });
+
+}
 
 
 
@@ -195,9 +270,9 @@ if (carousel && fadeText && fadeRight) {
 
     if (carousel.scrollLeft > 0) {
 
-      fadeText.style.opacity = '0'; // desaparece o texto
+      fadeText.style.opacity = '0';
 
-      fadeRight.style.opacity = '0'; // desaparece o fade
+      fadeRight.style.opacity = '0';
 
     }
 
@@ -215,13 +290,11 @@ if (carousel) {
 
     isDown = true;
 
-    carousel.classList.add('dragging'); // troca o cursor
+    carousel.classList.add('dragging');
 
     startX = e.pageX - carousel.offsetLeft;
 
     scrollLeft = carousel.scrollLeft;
-
-    // desliga scroll suave só durante drag
 
     carousel.style.scrollBehavior = 'auto';
 
@@ -233,7 +306,7 @@ if (carousel) {
 
     carousel.classList.remove('dragging');
 
-    carousel.style.scrollBehavior = ''; // volta pro CSS (smooth)
+    carousel.style.scrollBehavior = '';
 
   });
 
@@ -243,7 +316,7 @@ if (carousel) {
 
     carousel.classList.remove('dragging');
 
-    carousel.style.scrollBehavior = ''; // volta pro CSS
+    carousel.style.scrollBehavior = '';
 
   });
 
@@ -251,11 +324,11 @@ if (carousel) {
 
     if (!isDown) return;
 
-    e.preventDefault(); // evita selecionar texto/imagem
+    e.preventDefault();
 
     const x = e.pageX - carousel.offsetLeft;
 
-    const walk = (x - startX); // quanto arrastou
+    const walk = (x - startX);
 
     carousel.scrollLeft = scrollLeft - walk;
 
