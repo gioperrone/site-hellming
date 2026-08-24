@@ -1,0 +1,318 @@
+@charset "UTF-8";
+
+:root {
+  --primary-color: #dc0000;
+  --secondary-color: #800000;
+  --background: #0a0a0a;
+  --card: #111;
+  --card-hover: #1a1a1a;
+  --text: #eee;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Montserrat', monospace;
+  background: var(--background);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+
+/* =========================
+   BACKGROUND
+========================= */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.55),
+      rgba(0, 0, 0, 0.55)
+    ),
+    linear-gradient(
+      rgba(255, 255, 255, 0.055) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 0, 0, 0.055) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    auto,
+    4px 4px,
+    4px 4px;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.links-page {
+  position: relative;
+  z-index: 1;
+
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+
+  padding: 45px 20px 35px;
+}
+
+.links-container {
+  width: 100%;
+  max-width: 560px;
+}
+
+
+/* =========================
+   PROFILE
+========================= */
+
+.profile {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.profile-logo {
+  display: inline-block;
+}
+
+
+.profile-logo img {
+  display: block;
+
+  width: min(320px, 82vw);
+  height: auto;
+
+  margin: 0 auto 16px;
+}
+
+.profile-description {
+  color: #eee;
+
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+
+/* =========================
+   LINKS
+========================= */
+
+.links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.link-button {
+  position: relative;
+
+  min-height: 62px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px 58px;
+
+  background: rgba(17, 17, 17, 0.92);
+
+  border: 1px solid #333;
+  border-left: 2px solid var(--primary-color);
+
+  border-radius: 5px;
+
+  color: #eee;
+
+  text-decoration: none;
+
+  font-size: 0.95rem;
+  font-weight: 500;
+
+  text-align: center;
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.25s ease,
+    box-shadow 0.3s ease;
+
+  overflow: hidden;
+}
+
+
+/* Efeito vermelho sutil */
+
+.link-button::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(220, 0, 0, 0.10),
+      transparent 35%,
+      transparent 65%,
+      rgba(220, 0, 0, 0.05)
+    );
+
+  opacity: 0;
+
+  transition:
+    opacity 0.3s ease;
+}
+
+
+/* Hover */
+
+.link-button:hover {
+  background: var(--card-hover);
+
+  border-color: var(--primary-color);
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 5px 18px rgba(0, 0, 0, 0.35);
+}
+
+.link-button:hover::before {
+  opacity: 1;
+}
+
+.link-button:active {
+  transform: translateY(0);
+}
+
+
+/* Texto */
+
+.link-button > span:last-child {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* =========================
+   ICONS
+========================= */
+
+.link-icon {
+  position: absolute;
+
+  left: 18px;
+  top: 50%;
+
+  width: 30px;
+  height: 30px;
+
+  transform: translateY(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 2;
+}
+
+.link-icon img {
+  display: block;
+
+  width: 27px;
+  height: 27px;
+
+  object-fit: contain;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.links-footer {
+  margin-top: 35px;
+
+  text-align: center;
+
+  color: #777;
+}
+
+.links-footer img {
+  width: 42px;
+  height: 42px;
+
+  margin-bottom: 8px;
+}
+
+.links-footer p {
+  font-size: 0.75rem;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 480px) {
+
+  .links-page {
+    padding: 32px 15px 25px;
+  }
+
+  .profile {
+    margin-bottom: 25px;
+  }
+
+  .profile-logo img {
+    width: min(280px, 82vw);
+  }
+
+  .profile-description {
+    font-size: 0.78rem;
+  }
+
+  .links-list {
+    gap: 11px;
+  }
+
+  .link-button {
+    min-height: 58px;
+
+    font-size: 0.88rem;
+
+    padding-left: 52px;
+    padding-right: 52px;
+  }
+
+  .link-icon {
+    left: 15px;
+  }
+
+  .link-icon img {
+    width: 25px;
+    height: 25px;
+  }
+}
