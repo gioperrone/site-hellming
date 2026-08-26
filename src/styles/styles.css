@@ -626,7 +626,11 @@ footer {
 
 .social-icons {
   display: flex;
-  gap: 25px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  max-width: 250px;
+  margin: 0 auto;
 }
 
 .social-icons a img {
